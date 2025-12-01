@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::io::{self, Read, Write};
-
+use std::env;
 #[derive(Deserialize, Serialize)]
 struct Input {
     min: u32,
