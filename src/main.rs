@@ -9,10 +9,13 @@ struct Input {
 
 #[derive(Serialize)]
 struct Output {
-    random_number: u32,
+    random_number: String,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let protected_seed =
+        env::var("PROTECTED_SEED").expect("PROTECTED_SEED env variable is undefined");
+    
     // Read input from stdin
     let mut input_string = String::new();
     io::stdin().read_to_string(&mut input_string)?;
@@ -39,7 +42,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Create output
     let output = Output {
-        random_number: result,
+        random_number: protected_seed,
     };
 
     // Serialize to JSON and print to stdout
